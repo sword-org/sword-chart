@@ -1,0 +1,248 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>sword-chart demo</title>
+
+ <script src="../static/js/echarts/echarts.js" > </script>
+ <script src="../static/js/lang.js" > </script>
+
+ <!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+ 
+
+<script type="text/javascript">
+// 路径配置
+require.config({
+    paths: {
+        echarts: '../static/js/echarts'
+    }
+});
+
+
+
+</script>
+
+</head>
+<body>
+	<div class="row">
+	    <div  class="col-md-6 text-center">line</div>
+	    <div  class="col-md-6 text-center">liestack</div>
+	</div>
+	<div class="row">
+	    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	    <div id="main" style="height:400px" class="col-md-6"></div>
+	    <div id="main1" style="height:400px" class="col-md-6"></div>
+	</div>
+	<div class="row">
+	    <div  class="col-md-4 text-center">bar 3维格式二维数据</div>
+	    <div  class="col-md-4 text-center">bar 2维格式二维数据</div>
+	    <div  class="col-md-4 text-center">bar 3维格式3维数据</div>
+	</div>
+	<div class="row">
+	    <div id="main2" style="height:400px" class="col-md-4"></div>
+	    <div id="main21" style="height:400px" class="col-md-4"></div>
+	    <div id="main22" style="height:400px" class="col-md-4"></div>
+	</div>
+	<div class="row">
+	    <div  class="col-md-4 text-center">柱状堆积图</div>
+	    <div  class="col-md-4 text-center">自动增加变化率</div>
+	    <div  class="col-md-4 text-center">条形图</div>
+	</div>
+	<div class="row">
+	    <div id="main3" style="height:400px" class="col-md-4"></div>
+	    <div id="main4" style="height:400px" class="col-md-4"></div>
+	    <div id="main41" style="height:400px" class="col-md-4"></div>
+	</div>
+	<div class="row">
+	    <div  class="col-md-6 text-center">area</div>
+	    <div  class="col-md-6 text-center">areaStack</div>
+	</div>
+	<div class="row">
+	    <div id="main5" style="height:400px" class="col-md-6"></div>
+	    <div id="main6" style="height:400px" class="col-md-6"></div>
+	</div>
+	<div class="row">
+	    <div  class="col-md-6 text-center">pie</div>
+	    <div  class="col-md-6 text-center">donut</div>
+	</div>
+	<div class="row">
+	    <div id="main7" style="height:400px" class="col-md-6"></div>
+	    <div id="main8" style="height:400px" class="col-md-6"></div>
+	</div>
+	<div class="row">
+	    <div  class="col-md-6 text-center">pie</div>
+	    <div  class="col-md-6 text-center">donut</div>
+	</div>
+	<div class="row">
+	    <div id="main71" style="height:400px" class="col-md-6"></div>
+	    <div id="main81" style="height:400px" class="col-md-6"></div>
+	</div>
+   <p>示例代码</p>
+   <pre>
+     //正常3维数据
+   var jsonData = {
+			result: "success",
+			msg: "",
+			data: [
+				{"tradeDate":"2015-01-01","indName":"计算机","value":11},
+				{"tradeDate":"2015-01-01","indName":"军工","value":22},
+				{"tradeDate":"2015-01-02","indName":"计算机","value":33},
+				{"tradeDate":"2015-01-02","indName":"军工","value":44}
+			]
+		};
+   //2维数据
+   var json2D = {
+			result: "success",
+			msg: "",
+			data: [
+				{"indName":"计算机","value":11},
+				{"indName":"军工","value":22},
+				{"indName":"互联网","value":33},
+				{"indName":"传媒","value":44}
+			]
+		};
+   //2维数据显示为3维数据 tradeData 都是2015-03-31一个值
+   var json3is2 = {"msg":null,"data":[{"id":298,"indName":"生产","tradeDate":"2015-03-31","value":1.3},{"value":1.6,"id":315,"indName":"三级材料","tradeDate":"2015-03-31"},{"indName":"材料","tradeDate":"2015-03-31","value":1.20129188,"id":313},{"value":1.00133486,"indName":"医药","id":316,"tradeDate":"2015-03-31"},{"id":304,"indName":"综合","tradeDate":"2015-03-31","value":1.50198934},{"indName":"二级能源","tradeDate":"2015-03-31","id":311,"value":1.00271547},{"tradeDate":"2015-03-31","id":309,"value":1.00274985,"indName":"三级医疗"},{"id":301,"tradeDate":"2015-03-31","value":1.00466772,"indName":"制造"},{"indName":"二级材料","id":314,"value":1.00485362,"tradeDate":"2015-03-31"},{"value":1.00552668,"id":321,"indName":"三级化工","tradeDate":"2015-03-31"}],"result":"success"}
+
+   //正常3维数据
+   var obj = {"msg":null,"result":"success","data":[{"id":1,"indName":"三级传媒","value":1.00034815,"tradeDate":"2015-01-06"},{"value":0.89917462,"indName":"二级传媒","tradeDate":"2015-01-06","id":2},{"id":3,"indName":"传媒","value":10.00347625,"tradeDate":"2015-01-06"},{"id":4,"tradeDate":"2015-01-07","value":0.89906148,"indName":"三级传媒"},{"indName":"二级传媒","value":0.89948459,"id":5,"tradeDate":"2015-01-07"},{"indName":"传媒","value":8.63924241,"tradeDate":"2015-01-07","id":6},{"value":0.89944371,"id":7,"tradeDate":"2015-01-08","indName":"三级传媒"},{"value":1.00033518,"tradeDate":"2015-01-08","indName":"二级传媒","id":8},{"tradeDate":"2015-01-08","value":7.25668226,"id":9,"indName":"传媒"},{"tradeDate":"2015-01-06","value":0.89948264,"id":10,"indName":"三级军工"},{"indName":"二级军工","id":11,"tradeDate":"2015-01-06","value":1.00037711},{"id":12,"indName":"军工","tradeDate":"2015-01-06","value":0.89948325},{"id":13,"tradeDate":"2015-01-07","indName":"三级军工","value":0.89948968},{"indName":"二级军工","tradeDate":"2015-01-07","id":14,"value":1.00015308},{"indName":"军工","value":6.22684023,"tradeDate":"2015-01-07","id":15},{"id":16,"indName":"三级军工","tradeDate":"2015-01-08","value":0.89948335},{"id":17,"tradeDate":"2015-01-08","value":0.89948515,"indName":"二级军工"},{"indName":"军工","id":18,"tradeDate":"2015-01-08","value":0.89917096},{"tradeDate":"2015-01-06","indName":"三级传媒","value":1.00034815,"id":19},{"id":20,"value":0.89917462,"tradeDate":"2015-01-06","indName":"二级传媒"}]};
+	
+    //////////////
+	require([ 'echarts', 
+              'echarts/theme/dark',
+              'echarts/chart/line',
+              'echarts/chart/bar',
+              'echarts/chart/pie'], function(ec,theme) {
+		   Echart.line(ec, "main", "line", obj.data, "indName", "tradeDate", "value",theme);
+// 		   Echart.line(ec, "main", "line", json2D.data, "", "indName", "value",theme);//no
+		   Echart.lineStack(ec, "main1", "lineStack", obj.data, "indName", "tradeDate", "value",theme);
+		   
+		   Echart.bar(ec, "main2", "bar 3维格式二维数据", json3is2.data, "tradeDate", "indName", "value",theme);
+		   Echart.bar(ec, "main22", "bar 3维格式3维数据", obj.data, "indName", "tradeDate", "value",theme);
+// 		   Echart.bar(ec, "main21", "bar 2维格式二维数据", json2D.data, "销量", "indName", "value",theme);
+		   Echart.bar(ec, "main21", "bar 2维格式二维数据", json2D.data, "", "indName", "value",theme);
+// 		   Echart.bar(ec, "main21", "bar 2维格式二维数据", json2D.data, null, "indName", "value",theme);
+		   
+		   Echart.barStack(ec, "main3", "barStack", obj.data, "indName", "tradeDate", "value",theme);
+// 		   Echart.barRoc(ec, "main4", "barRoc", json2D.data, "占比", "indName", "value",theme);
+// 		   Echart.barRoc(ec, "main4", "barRoc", json2D.data, "", "indName", "value",theme);
+// 		   Echart.barRoc(ec, "main4", "barRoc", json2D.data, null, "indName", "value",theme);
+		   Echart.barRoc(ec, "main4", "barRoc", json3is2.data, "tradeDate", "indName", "value",theme);
+		   
+		   Echart.area(ec, "main5", "area", obj.data, "indName", "tradeDate", "value",theme);
+		   Echart.areaStack(ec, "main6", "areaStack", obj.data, "indName", "tradeDate", "value",theme);
+		   
+		   Echart.pie(ec, "main7", "pie 3维格式二维数据", json3is2.data, "indName", "value",theme);
+		   Echart.pie(ec, "main71", "pie 2维格式二维数据", json2D.data, "indName", "value",theme);
+		   Echart.donut(ec, "main8", "donut 3维格式二维数据", json3is2.data, "indName", "value",theme);
+		   Echart.donut(ec, "main81", "donut 2维格式二维数据", json2D.data, "indName", "value",theme);
+
+		   
+		   //自定义样式demo=====
+		   Echart.line(ec, "main", "line", obj.data, "indName", "tradeDate", "value",theme,function(option){
+			   //在这里自定义option的属性
+			   option.title.text = "test";
+		   });
+	});
+	/////////////////////////////////////////////////////
+   </pre>
+
+<script type="text/javascript">
+   //正常3维数据
+   var jsonData = {
+			result: "success",
+			msg: "",
+			data: [
+				{"tradeDate":"2015-01-01","indName":"计算机","value":11},
+				{"tradeDate":"2015-01-01","indName":"军工","value":22},
+				{"tradeDate":"2015-01-02","indName":"计算机","value":33},
+				{"tradeDate":"2015-01-02","indName":"军工","value":44}
+			]
+		};
+   //2维数据
+   var json2D = {
+			result: "success",
+			msg: "",
+			data: [
+				{"indName":"计算机","value":11},
+				{"indName":"军工","value":22},
+				{"indName":"互联网","value":33},
+				{"indName":"传媒","value":44}
+			]
+		};
+   //2维数据显示为3维数据 tradeData 都是2015-03-31一个值
+   var json3is2 = {"msg":null,"data":[{"id":298,"indName":"生产","tradeDate":"2015-03-31","value":1.3},{"value":1.6,"id":315,"indName":"三级材料","tradeDate":"2015-03-31"},{"indName":"材料","tradeDate":"2015-03-31","value":1.20129188,"id":313},{"value":1.00133486,"indName":"医药","id":316,"tradeDate":"2015-03-31"},{"id":304,"indName":"综合","tradeDate":"2015-03-31","value":1.50198934},{"indName":"二级能源","tradeDate":"2015-03-31","id":311,"value":1.00271547},{"tradeDate":"2015-03-31","id":309,"value":1.00274985,"indName":"三级医疗"},{"id":301,"tradeDate":"2015-03-31","value":1.00466772,"indName":"制造"},{"indName":"二级材料","id":314,"value":1.00485362,"tradeDate":"2015-03-31"},{"value":1.00552668,"id":321,"indName":"三级化工","tradeDate":"2015-03-31"}],"result":"success"}
+
+   //正常3维数据
+   var obj = {"msg":null,"result":"success","data":[{"id":1,"indName":"三级传媒","value":1.00034815,"tradeDate":"2015-01-06"},{"value":0.89917462,"indName":"二级传媒","tradeDate":"2015-01-06","id":2},{"id":3,"indName":"传媒","value":10.00347625,"tradeDate":"2015-01-06"},{"id":4,"tradeDate":"2015-01-07","value":0.89906148,"indName":"三级传媒"},{"indName":"二级传媒","value":0.89948459,"id":5,"tradeDate":"2015-01-07"},{"indName":"传媒","value":8.63924241,"tradeDate":"2015-01-07","id":6},{"value":0.89944371,"id":7,"tradeDate":"2015-01-08","indName":"三级传媒"},{"value":1.00033518,"tradeDate":"2015-01-08","indName":"二级传媒","id":8},{"tradeDate":"2015-01-08","value":7.25668226,"id":9,"indName":"传媒"},{"tradeDate":"2015-01-06","value":0.89948264,"id":10,"indName":"三级军工"},{"indName":"二级军工","id":11,"tradeDate":"2015-01-06","value":1.00037711},{"id":12,"indName":"军工","tradeDate":"2015-01-06","value":0.89948325},{"id":13,"tradeDate":"2015-01-07","indName":"三级军工","value":0.89948968},{"indName":"二级军工","tradeDate":"2015-01-07","id":14,"value":1.00015308},{"indName":"军工","value":6.22684023,"tradeDate":"2015-01-07","id":15},{"id":16,"indName":"三级军工","tradeDate":"2015-01-08","value":0.89948335},{"id":17,"tradeDate":"2015-01-08","value":0.89948515,"indName":"二级军工"},{"indName":"军工","id":18,"tradeDate":"2015-01-08","value":0.89917096},{"tradeDate":"2015-01-06","indName":"三级传媒","value":1.00034815,"id":19},{"id":20,"value":0.89917462,"tradeDate":"2015-01-06","indName":"二级传媒"}]};
+	
+   ///////////
+   require([ 'echarts', 
+              'echarts/theme/dark',
+              'echarts/chart/line',
+              'echarts/chart/bar',
+              'echarts/chart/pie'], function(ec,theme) {
+		   Echart.line(ec, "main", "line", obj.data, "indName", "tradeDate", "value",theme);
+// 		   Echart.line(ec, "main", "line", json2D.data, "", "indName", "value",theme);//no
+		   Echart.lineStack(ec, "main1", "lineStack", obj.data, "indName", "tradeDate", "value",theme);
+		   
+		   Echart.bar(ec, "main2", "bar 3维格式二维数据", json3is2.data, "tradeDate", "indName", "value",theme);
+		   Echart.bar(ec, "main22", "bar 3维格式3维数据", obj.data, "indName", "tradeDate", "value",theme);
+// 		   Echart.bar(ec, "main21", "bar 2维格式二维数据", json2D.data, "销量", "indName", "value",theme);
+		   Echart.bar(ec, "main21", "bar 2维格式二维数据", json2D.data, "", "indName", "value",theme);
+// 		   Echart.bar(ec, "main21", "bar 2维格式二维数据", json2D.data, null, "indName", "value",theme);
+		   
+		   Echart.barStack(ec, "main3", "barStack", obj.data, "indName", "tradeDate", "value",theme);
+// 		   Echart.barRoc(ec, "main4", "barRoc", json2D.data, "占比", "indName", "value",theme);
+// 		   Echart.barRoc(ec, "main4", "barRoc", json2D.data, "", "indName", "value",theme);
+// 		   Echart.barRoc(ec, "main4", "barRoc", json2D.data, null, "indName", "value",theme);
+		   Echart.barRoc(ec, "main4", "barRoc", json3is2.data, "tradeDate", "indName", "value",theme);
+		   Echart.bar(ec, "main41", "条形图", json3is2.data, "tradeDate", "indName", "value",theme,function(option){
+			   var temp = option.xAxis;
+			   option.xAxis = option.yAxis;
+			   option.yAxis = temp;
+		   });
+		   
+		   Echart.area(ec, "main5", "area", obj.data, "indName", "tradeDate", "value",theme);
+		   Echart.areaStack(ec, "main6", "areaStack", obj.data, "indName", "tradeDate", "value",theme);
+		   
+		   Echart.pie(ec, "main7", "pie 3维格式二维数据", json3is2.data, "indName", "value",theme);
+		   Echart.pie(ec, "main71", "pie 2维格式二维数据", json2D.data, "indName", "value",theme);
+		   Echart.donut(ec, "main8", "donut 3维格式二维数据", json3is2.data, "indName", "value",theme);
+		   Echart.donut(ec, "main81", "donut 2维格式二维数据", json2D.data, "indName", "value",theme);
+		   
+// 		   //自定义样式demo=====
+// 		   Echart.line(ec, "main", "line", obj.data, "indName", "tradeDate", "value",theme,function(option){
+// 			   //在这里自定义option的属性
+// 			   option.title.text = "test";
+// 		   });
+
+         
+
+	});
+	/////////////////////////////////////////////////////
+
+    var arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+	var roc = QOQ.roc(arr,2,5);
+// 	alert(roc);
+	var voc = QOQ.voc(arr,2,5);
+// 	alert(voc);
+
+	
+	
+	
+</script>
+
+</body>
+</html>
