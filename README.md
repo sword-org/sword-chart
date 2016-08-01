@@ -124,7 +124,7 @@ require.config({
 
 
 ## 2.5 自定义图形样式
-如果要自定义复杂的图形样式，比如旋转轴数据的斜度等，可以去月度echarts的文档，然后按照如下方式自定义样式。
+如果要自定义复杂的图形样式，比如旋转轴数据的斜度等，可以去阅读echarts的文档，然后按照如下方式自定义样式。
 ```js
        //自定义样式demo=====
        Echart.line(ec, "main", "line", obj.data, "indName", "tradeDate", "value",theme,function(option){
