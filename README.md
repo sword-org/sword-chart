@@ -1,5 +1,5 @@
 # sword-chart
-非常简单的javascript的绘图库，一行代码绘制常见图形。
+非常简单的javascript的绘图库，一行代码绘制常见图形,基于echarts的库。
 
 # 1 示例
   * 下载本项目demo文件，使用浏览器打开demo项目中的sword-chart.html文件查看
