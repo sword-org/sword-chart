@@ -2,7 +2,6 @@
 /**
  * 语言层面支持方法
  * 修改此脚本请联系作者
- * chengn@thfund.com.cn
  * @author chengn
  * @date   2015-03-20
  */
